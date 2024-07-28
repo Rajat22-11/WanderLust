@@ -22,7 +22,7 @@ const listingRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js")
 const userRouter = require("./routes/user.js");
 const searchRouter = require('./routes/search');
-const autocompleteRouter = require('./routes/autocomplete.js'); // Import the router
+const autocompleteRouter = require('./routes/autoComplete.js'); // Import the router
 
 const { log } = require("console");
 
