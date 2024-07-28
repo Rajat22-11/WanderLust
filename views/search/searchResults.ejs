@@ -1,0 +1,33 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 mt-3">
+        <h3>Search Results for "<%= query %>":</h3>
+        <% if(results.length > 0) { %>
+          <div class="row">
+            <% results.forEach(result => { %>
+              <div class="col-md-4 mb-3">
+                <div class="card listing-card">
+                  <img src="<%= result.image.url %>" class="card-img-top" alt="listing_image">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= result.title %></h5>
+                    <p class="card-text">
+                      <i>Location: <%= result.location %></i><br>
+                      <%= result.description %><br>
+                      &#8377; <%= result.price.toLocaleString("en-IN") %><br>
+                      <%= result.country %>
+                    </p>
+                    <a href="/listings/<%= result._id %>" class="btn btn-outline-dark">View Listing</a>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <p>No results found for your search query.</p>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>

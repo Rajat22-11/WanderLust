@@ -21,6 +21,9 @@ const User = require("./models/user.js")
 const listingRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js")
 const userRouter = require("./routes/user.js");
+const searchRouter = require('./routes/search');
+const autocompleteRouter = require('./routes/autocomplete.js'); // Import the router
+
 const { log } = require("console");
 
 
@@ -131,6 +134,12 @@ app.use((req, res, next) => {
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewsRouter);
 app.use("/", userRouter);
+app.use("/", searchRouter);
+
+
+// Add this line to use the router
+app.use("/", autocompleteRouter);
+
 
 app.all( "*", ( req, res, next ) => {
     next(new ExpressError(404, "Page Not Found!"));
@@ -142,6 +151,9 @@ app.use((err, req, res, next) => {
     // res.status(statusCode).send(message);
     res.status(statusCode).render("error.ejs", {message})
 })
+
+
+
 
 
 app.listen(8080, () =>{
